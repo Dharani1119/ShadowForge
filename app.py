@@ -1,4 +1,4 @@
-import streamlit as st
+ import streamlit as st
 import time
 from datetime import datetime
 from utils.player import init_db, get_player, add_xp
@@ -9,6 +9,12 @@ st.set_page_config(page_title="ShadowForge", page_icon="⚔️", layout="wide")
 init_db()
 player = get_player()
 name, level, xp, streak = player[1], player[2], player[3], player[4]
+
+# Rank System
+ranks = {
+    1: "Novice Shadow", 5: "Awakened Hunter", 10: "Elite Shadow",
+    15: "Monarch Candidate", 20: "Shadow Monarch", 30: "Supreme Ruler"
+}
 
 # ====================== STRONG ANIME GAMING CSS ======================
 st.markdown("""
@@ -53,6 +59,7 @@ st.markdown("""
         font-size: 4.5rem;
         font-weight: bold;
         text-shadow: 0 0 30px #a855f7;
+        text-align: center;
     }
 </style>
 """, unsafe_allow_html=True)
