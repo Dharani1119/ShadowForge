@@ -2,7 +2,7 @@ import sqlite3
 
 def add_quest(title, difficulty):
     xp_dict = {"Easy": 15, "Medium": 30, "Hard": 50}
-    xp = xp_dict.get(difficulty, 20)
+    xp = xp_dict.get(difficulty, 25)
     
     conn = sqlite3.connect("data/study_data.db")
     c = conn.cursor()
