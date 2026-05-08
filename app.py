@@ -1,4 +1,4 @@
- import streamlit as st
+import streamlit as st
 import time
 from datetime import datetime
 from utils.player import init_db, get_player, add_xp
