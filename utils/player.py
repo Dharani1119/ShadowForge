@@ -5,7 +5,7 @@ def init_db():
     conn = sqlite3.connect("data/study_data.db")
     c = conn.cursor()
     
-    # Player table
+    # Player Table
     c.execute('''CREATE TABLE IF NOT EXISTS player 
                  (id INTEGER PRIMARY KEY, 
                   name TEXT, 
@@ -14,11 +14,20 @@ def init_db():
                   streak INTEGER DEFAULT 0, 
                   last_date TEXT)''')
     
+    # Quests Table
+    c.execute('''CREATE TABLE IF NOT EXISTS quests 
+                 (id INTEGER PRIMARY KEY, 
+                  title TEXT, 
+                  difficulty TEXT, 
+                  xp INTEGER, 
+                  completed INTEGER DEFAULT 0)''')
+    
     # Insert default player if not exists
     c.execute("SELECT * FROM player WHERE id=1")
     if not c.fetchone():
         today = datetime.now().strftime("%Y-%m-%d")
-        c.execute("INSERT INTO player (id, name, level, xp, streak, last_date) VALUES (1, 'Shadow Hunter', 1, 0, 0, ?)", (today,))
+        c.execute("""INSERT INTO player (id, name, level, xp, streak, last_date) 
+                     VALUES (1, 'Shadow Hunter', 1, 0, 0, ?)""", (today,))
     
     conn.commit()
     conn.close()
